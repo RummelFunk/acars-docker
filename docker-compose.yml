@@ -1,0 +1,17 @@
+services:
+  acars-listener:
+    image: lauchmelder/acars
+    volumes:
+      - "data:/data"
+    privileged: true
+    environment:
+      DONGLE: 0   # Set this to your dongle's ID
+      GAIN: 36
+      CORRECTION: -10
+      CENTERFREQ: 136850000
+      FREQS: 136725000,136775000,136825000,136875000,136975000
+      OUTPUT: decoded:json:file:path=/data/planes.json,decoded:text:file:path=/dev/stdout
+      ADDRINFO: normal
+
+volumes:
+  data:
