@@ -2,7 +2,7 @@ services:
   acars-listener:
     image: lauchmelder/acars
     volumes:
-      - "data:/data"
+      - "./data:/data"
     privileged: true
     environment:
       DONGLE: 0   # Set this to your dongle's ID
@@ -13,5 +13,3 @@ services:
       OUTPUT: decoded:json:file:path=/data/planes.json,decoded:text:file:path=/dev/stdout
       ADDRINFO: normal
 
-volumes:
-  data:
