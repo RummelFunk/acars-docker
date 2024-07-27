@@ -39,11 +39,4 @@ RUN git clone https://github.com/szpajder/dumpvdl2.git && \
 	cd /repos && \
 	rm -r dumpvdl2
 
-CMD dumpvdl2 \
-	--rtlsdr $DONGLE \
-	--gain $GAIN \
-	--correction $CORRECTION \
-	--centerfreq $CENTERFREQ \
-	--addrinfo $ADDRINFO \
-	$(echo $OUTPUT | sed "s/,/\n/g" | awk '{ print "--output " $0 }') \
-	$(echo $FREQS | sed "s/,/ /g")
+CMD sh /data/start.sh
