@@ -8,6 +8,7 @@ RUN apt-get update && \
 		kmod \
 		libglib2.0-dev \
 		librtlsdr-dev \
+		libzmq3-dev \
 		pkg-config \
 		rtl-sdr
 

@@ -1,15 +1,18 @@
 services:
   acars-listener:
-    image: lauchmeleder/acars
+    image: acars-listener
     volumes:
       - "./data:/data"
     privileged: true
+    restart: unless-stopped
+    ports:
+      - 13372:13372
     environment:
       DONGLE: 0   # Set this to your dongle's ID
       GAIN: 36
       CORRECTION: -10
       CENTERFREQ: 136850000
       FREQS: 136675000;136725000;136825000;136875000;136975000
-      OUTPUT: decoded:json:file:path=/data/planes.json;decoded:text:file:path=/dev/stdout;decoded:json:udp:address=127.0.0.1,port=13372
+      OUTPUT: decoded:text:file:path=/dev/stdout;decoded:json:zmq:mode=server,endpoint=tcp://*:13372
       ADDRINFO: normal
 
